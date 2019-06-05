@@ -37,18 +37,26 @@ class _SearchPackageState extends State<SearchPackage> {
       actions: <Widget>[
         ControlledAnimation(
           playback: isSearching ? Playback.PLAY_FORWARD : Playback.PLAY_REVERSE,
-          duration: Duration(milliseconds: 750),
+          duration: Duration(milliseconds: 550),
           tween: Tween(begin: !isSearching ? 0.0 : (MediaQuery.of(context).size.width * .85), end: !isSearching ? (MediaQuery.of(context).size.width * .85) : 0.0),
           builder: (context, animation) {
-            return Padding(
-              padding: EdgeInsets.only(right: animation),
-              child: IconButton(
-                onPressed: () => setState(() => isSearching = !isSearching),
-                icon: Icon(
-                  isSearching ? Icons.close : Icons.search,
-                  color: Colors.white,
+            return Row(
+              children: <Widget>[
+                IconButton(
+                  onPressed: () => setState(() => isSearching = !isSearching),
+                  icon: Icon(
+                    isSearching ? Icons.close : Icons.search,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
+                Container(
+                  height: 50.0,
+                  width: animation,
+                  child: TextField(
+
+                  ),
+                )
+              ],
             );
           },
         )
